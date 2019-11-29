@@ -1,0 +1,38 @@
+<Project>
+  <PropertyGroup Label="SDK Versions">
+    <NetStandardTargetVersion>netstandard2.0</NetStandardTargetVersion>
+    <NetCoreTargetVersion>netcoreapp2.2</NetCoreTargetVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Configurations">
+    <BuildConfigurations>Debug;Release</BuildConfigurations>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package Versions">
+    <NewtonsoftJsonPackageVersion>11.0.2</NewtonsoftJsonPackageVersion>
+    <SwashbuckleAspNetCorePackageVersion>4.0.1</SwashbuckleAspNetCorePackageVersion>
+    <SerilogSinkConsolePackageVersion>3.1.1</SerilogSinkConsolePackageVersion>
+    <SerilogSinkFilePackageVersion>4.0.0</SerilogSinkFilePackageVersion>
+    <SerilogPackageVersion>2.1.1</SerilogPackageVersion>
+    <EntityFrameworkPackageVersion>2.2.4</EntityFrameworkPackageVersion>
+    <EntityFrameworkSqlPackageVersion>2.2.4</EntityFrameworkSqlPackageVersion>
+    <EntityFrameworkRelationalPackageVersion>2.2.4</EntityFrameworkRelationalPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Test Package Versions">
+    <MicrosoftNETTestSdkPackageVersion>16.1.1</MicrosoftNETTestSdkPackageVersion>
+    <FluentAssertionsVersion>5.7.0</FluentAssertionsVersion>
+    <ASPNetCoreTestHostVersion>2.2.0</ASPNetCoreTestHostVersion>
+    <XUnitPackageVersion>2.4.1</XUnitPackageVersion>
+    <XUnitRunnerVisualstudio>2.4.1</XUnitRunnerVisualstudio>
+  </PropertyGroup>
+
+  <PropertyGroup Label="CLI Tools Versions">
+    <DotnetXUnitPackageVersion>2.3.1</DotnetXUnitPackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)/obj/**/*</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(MSBuildProjectDirectory)/bin/**/*</DefaultItemExcludes>
+  </PropertyGroup>
+</Project>
