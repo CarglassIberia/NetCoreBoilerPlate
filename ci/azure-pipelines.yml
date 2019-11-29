@@ -1,0 +1,32 @@
+name: BoilerPlate Build
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+variables:
+  buildConfiguration: 'Release'
+  Major: '1'
+  Minor: '0'
+  Patch: '0'
+  node_version: '10'
+  dockerId: paastraining 
+  tagName: latest
+
+steps:
+- script: |
+    docker-compose build
+
+- task: CopyFiles@2
+  displayName: 'Copy ARM templates'
+  inputs:
+    SourceFolder: deploy
+    Contents: '*.json'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- script: |
+    docker login -u $(dockerId) -p $(dockerPassword) $(dockerId).azurecr.io
+    docker-compose push
+  displayName: 'Pushing Docker images'
+

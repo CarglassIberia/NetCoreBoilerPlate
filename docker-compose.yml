@@ -4,5 +4,5 @@ services:
   boilerplate.host:
     image: ${DOCKER_REGISTRY-}boilerplatehost
     build:
-      context: .
-      dockerfile: app/src/Boilerplate.Host/Dockerfile
+      context: ./app
+      dockerfile: src/Boilerplate.Host/Dockerfile
