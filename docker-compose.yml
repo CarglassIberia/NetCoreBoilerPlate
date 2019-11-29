@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  boilerplate.host:
+    image: ${DOCKER_REGISTRY-}boilerplatehost
+    build:
+      context: .
+      dockerfile: app/src/Boilerplate.Host/Dockerfile

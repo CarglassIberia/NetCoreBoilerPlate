@@ -47,7 +47,7 @@ namespace Boilerplate.Host
             API.Module.Configure(
                 app,
                 host => host 
-                    .UseIfNot(env.IsDevelopment(), appBuilder => appBuilder.UseHsts())
+                    //.UseIfNot(env.IsDevelopment(), appBuilder => appBuilder.UseHsts())
                     //.UseIf(env.IsDevelopment(), appBuilder =>
                     //    appBuilder.EnsureDatabaseIsSeeded<PayrollContext>(true, DataSeedTools.SeedDataWithFaker))
                     .UseAuthentication()
