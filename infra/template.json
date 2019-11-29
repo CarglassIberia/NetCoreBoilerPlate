@@ -1,13 +1,13 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "sites_CGBoilerplateApp_name": {
-            "defaultValue": "CGBoilerplateApp",
+        "serverfarms_miplanmolon_name": {
+            "defaultValue": "miplanmolon",
             "type": "String"
         },
-        "serverfarms_CGBoilerplateRG_name": {
-            "defaultValue": "CGBoilerplateRG",
+        "sites_miboilerplatemolon_name": {
+            "defaultValue": "miboilerplatemolon",
             "type": "String"
         }
     },
@@ -16,13 +16,13 @@
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
-            "name": "[parameters('serverfarms_CGBoilerplateRG_name')]",
+            "name": "[parameters('serverfarms_miplanmolon_name')]",
             "location": "West Europe",
             "sku": {
-                "name": "B1",
-                "tier": "Basic",
-                "size": "B1",
-                "family": "B",
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
                 "capacity": 1
             },
             "kind": "linux",
@@ -30,7 +30,6 @@
                 "perSiteScaling": false,
                 "maximumElasticWorkerCount": 1,
                 "isSpot": false,
-                "freeOfferExpirationTime": "2019-12-29T11:11:47.2566667",
                 "reserved": true,
                 "isXenon": false,
                 "hyperV": false,
@@ -41,27 +40,27 @@
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
-            "name": "[parameters('sites_CGBoilerplateApp_name')]",
+            "name": "[parameters('sites_miboilerplatemolon_name')]",
             "location": "West Europe",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_CGBoilerplateRG_name'))]"
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_miplanmolon_name'))]"
             ],
             "kind": "app,linux,container",
             "properties": {
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "cgboilerplateapp.azurewebsites.net",
+                        "name": "[concat(parameters('sites_miboilerplatemolon_name'), '.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "hostType": "Standard"
                     },
                     {
-                        "name": "cgboilerplateapp.scm.azurewebsites.net",
+                        "name": "[concat(parameters('sites_miboilerplatemolon_name'), '.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "hostType": "Repository"
                     }
                 ],
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_CGBoilerplateRG_name'))]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_miplanmolon_name'))]",
                 "reserved": true,
                 "isXenon": false,
                 "hyperV": false,
@@ -78,10 +77,10 @@
         {
             "type": "Microsoft.Web/sites/config",
             "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_CGBoilerplateApp_name'), '/web')]",
+            "name": "[concat(parameters('sites_miboilerplatemolon_name'), '/web')]",
             "location": "West Europe",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_CGBoilerplateApp_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_miboilerplatemolon_name'))]"
             ],
             "properties": {
                 "numberOfWorkers": 1,
@@ -100,24 +99,24 @@
                 "phpVersion": "",
                 "pythonVersion": "",
                 "nodeVersion": "",
-                "linuxFxVersion": "DOCKER|nginx",
+                "linuxFxVersion": "DOCKER|cgboilerplatecr.azurecr.io/boilerplatehost:latest",
                 "requestTracingEnabled": false,
                 "remoteDebuggingEnabled": false,
                 "httpLoggingEnabled": false,
                 "logsDirectorySizeLimit": 35,
                 "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$CGBoilerplateApp",
+                "publishingUsername": "$miboilerplatemolon",
                 "scmType": "None",
                 "use32BitWorkerProcess": true,
                 "webSocketsEnabled": false,
-                "alwaysOn": false,
+                "alwaysOn": true,
                 "appCommandLine": "",
                 "managedPipelineMode": "Integrated",
                 "virtualApplications": [
                     {
                         "virtualPath": "/",
                         "physicalPath": "site\\wwwroot",
-                        "preloadEnabled": false,
+                        "preloadEnabled": true,
                         "virtualDirectories": null
                     }
                 ],
@@ -189,13 +188,13 @@
         {
             "type": "Microsoft.Web/sites/hostNameBindings",
             "apiVersion": "2018-11-01",
-            "name": "[concat(parameters('sites_CGBoilerplateApp_name'), '/', parameters('sites_CGBoilerplateApp_name'), '.azurewebsites.net')]",
+            "name": "[concat(parameters('sites_miboilerplatemolon_name'), '/', parameters('sites_miboilerplatemolon_name'), '.azurewebsites.net')]",
             "location": "West Europe",
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_CGBoilerplateApp_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_miboilerplatemolon_name'))]"
             ],
             "properties": {
-                "siteName": "CGBoilerplateApp",
+                "siteName": "miboilerplatemolon",
                 "hostNameType": "Verified"
             }
         }
