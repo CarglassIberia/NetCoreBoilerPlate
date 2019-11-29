@@ -13,6 +13,8 @@ variables:
   node_version: '10'
   dockerId: floroloContainerRegistry 
   tagName: latest
+  repository: $(dockerId).azurecr.io
+  DOCKER_REGISTRY-: $(repository)
 
 steps:
 - script: |
@@ -26,7 +28,7 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - script: |
-    docker login -u $(dockerId) -p $(dockerPassword) $(dockerId).azurecr.io
+    docker login -u $(dockerId) -p $(dockerPassword) $(repository)
     docker-compose push
   displayName: 'Pushing Docker images'
 
