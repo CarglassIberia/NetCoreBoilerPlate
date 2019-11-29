@@ -11,7 +11,7 @@ variables:
   Minor: '0'
   Patch: '0'
   node_version: '10'
-  dockerId: floroloContainerRegistry 
+  dockerId: CGBoilerplateCR 
   tagName: latest
   repository: $(dockerId).azurecr.io
 
@@ -31,3 +31,5 @@ steps:
     docker-compose push
   displayName: 'Pushing Docker images'
 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
