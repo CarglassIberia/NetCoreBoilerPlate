@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   boilerplate.host:
-    image: ${DOCKER_REGISTRY-}boilerplatehost
+    image: ${PRIVATE_REGISTRY}/boilerplatehost
     env_file:
       - .env
     build:
