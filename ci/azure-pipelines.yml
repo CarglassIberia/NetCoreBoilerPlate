@@ -11,7 +11,7 @@ variables:
   Minor: '0'
   Patch: '0'
   node_version: '10'
-  dockerId: paastraining 
+  dockerId: floroloContainerRegistry 
   tagName: latest
 
 steps:
