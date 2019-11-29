@@ -31,3 +31,5 @@ steps:
     docker-compose push
   displayName: 'Pushing Docker images'
 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
